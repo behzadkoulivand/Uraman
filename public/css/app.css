@@ -1,0 +1,158 @@
+@tailwind base;
+
+@layer base {
+    @font-face {
+        font-family: IRAN;
+        font-style: normal;
+        font-weight: 600;
+        src: url('fonts/IRAN.woff2') format('woff2'),
+             url('fonts/IRAN.woff') format('woff')
+    }
+    @font-face {
+        font-family: IRAN;
+        font-style: normal;
+        font-weight: 500;
+        src: url('fonts/IRAN.woff2') format('woff2'),
+             url('fonts/IRAN.woff') format('woff')
+    }
+    
+    @font-face {
+        font-family: IRAN;
+        font-style: normal;
+        font-weight: 400;
+        src: url('fonts/IRAN.woff2') format('woff2'),
+             url('fonts/IRAN.woff') format('woff')
+    }
+}
+
+@tailwind components;
+
+@layer components {
+    .title-color {
+        @apply text-gray-950;
+    }
+    .no-spinner {
+        -moz-appearance: textfield;
+      }
+    
+      .no-spinner::-webkit-outer-spin-button,
+      .no-spinner::-webkit-inner-spin-button {
+        margin: 0;
+        -webkit-appearance: none;
+      }
+}
+@tailwind utilities;
+
+
+
+body {
+    @apply font-iran;
+}
+
+[x-cloak] { display: none !important; }
+
+.handle_profile .login {
+    @apply flex;
+}
+
+.handle_profile .profile {
+    @apply hidden;
+}
+
+.handle_profile.showprofile .login {
+    @apply hidden !important;
+}
+
+.handle_profile.showprofile .profile {
+    @apply flex !important;
+}
+
+.handle_profile1 .login {
+    @apply flex;
+}
+
+.handle_profile1 .profile {
+    @apply hidden;
+}
+
+.handle_profile1.showprofile .login {
+    @apply hidden !important;
+}
+
+.handle_profile1.showprofile .profile {
+    @apply flex !important;
+}
+.handle_profile2 .login {
+    @apply flex;
+}
+
+.handle_profile2 .profile {
+    @apply hidden;
+}
+
+.handle_profile2.showprofile .login {
+    @apply hidden !important;
+}
+
+.handle_profile2.showprofile .profile {
+    @apply flex !important;
+}
+
+.top_swiper_container .top_swiper_next, .top_swiper_container .top_swiper_prev{
+    @apply w-8 h-16 bg-white bg-opacity-50 border border-gray-300 rounded-2xl backdrop-blur-sm;
+}
+
+.top_swiper_container .top_swiper_next{
+    @apply -right-3;
+}
+.top_swiper_container .top_swiper_next::after, .top_swiper_container .top_swiper_prev::after{
+    @apply text-lg font-bold text-gray-700;
+}
+.top_swiper_container .top_swiper_prev{
+    @apply -left-3;
+}
+
+.mylabel {
+    border: 1px solid #fff;
+    display: block;
+    position: relative;
+    cursor: pointer;
+}
+  
+.mylabel:before {
+    background-color: white;
+    color: white;
+    content: " ";
+    display: block;
+    border-radius: 50%;
+    border: 1px solid grey;
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 28px;
+    transition-duration: 0.4s;
+    transform: scale(0);
+}
+  
+.mylabel img {
+    transition-duration: 0.2s;
+    transform-origin: 25% 25%;
+}
+  
+:checked + .mylabel {
+    border-color: green;
+}
+  
+:checked + .mylabel:before {
+    content: "✓";
+    background-color: green;
+    transform: scale(1);
+}
+  
+:checked + .mylabel img {
+    transform: scale(0.9);
+    z-index: -1;
+}

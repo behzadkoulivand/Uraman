@@ -1,0 +1,172 @@
+<form class="form-signin" action="/users/login" method="POST">
+    <h1 class="h3 mb-3 font-weight-normal">ورود به بخش مدیریت</h1>
+    <%- include("./includes/loginMessages.ejs") %>
+    <label for="inputPhone" class="sr-only">شماره تلفن</label>
+    <input
+        type="tel"
+        name="phone"
+        id="inputPhone"
+        class="form-control mb-2"
+        placeholder="شماره تلفن"
+        required
+        autofocus
+    />
+    <label for="inputPassword" class="sr-only">کلمه عبور</label>
+    <input
+        type="password"
+        name="password"
+        id="inputPassword"
+        class="form-control"
+        placeholder="کلمه عبور"
+        required
+    />
+    <div class="checkbox mb-3">
+        <label>
+            <input name="remember" type="checkbox" value="remember-me" /> من را
+            به خاطر بسپار
+        </label>
+    </div>
+    <a href="/users/register">حساب کاربری ندارم/ ثبتنام</a>
+    <button @click="closeAfter()" class="btn btn-lg btn-primary btn-block" type="submit">ورود</button>
+</form>
+
+<script>
+        
+    function handleMenuLogin() {
+      return {
+          openLogin: false,
+          openMenu: false,
+          loginTab: false,
+          forgotLoginTab: false,
+          codeForgotTab: false,
+          signupTab: false,
+          codeSignupTab: false,
+          welcomeTab: false,
+          firstLogin: false,
+          reserveTooltip: false,
+
+          MobileProfileTab: false,
+          NavProfileTab: false,
+          BottomProfileTab: false,
+
+          openLoginMobile(){
+              this.openLogin = true
+              this.loginTab = true
+              this.openMenu = false
+          },
+
+          forgotLogin(){
+            this.loginTab = false
+            this.forgotLoginTab = true
+          },
+
+          codeForgot(){
+            this.forgotLoginTab = false
+            this.codeForgotTab = true
+          },
+
+          signup(){
+            this.loginTab = false
+            this.signupTab = true
+          },
+
+          loginBefore(){
+            this.signupTab = false
+            this.loginTab = true
+          },
+
+          Reserve(){
+              this.openLogin = true
+              if(localStorage.getItem('showprofile') === 'profile'){
+                this.reserveTooltip = true
+              }
+              else if(localStorage.getItem('showprofile') === 'login'){
+                this.firstLogin = true
+              }
+          },
+          
+          hosting(){
+            if(localStorage.getItem('showprofile') === 'profile'){
+                window.location.href = "/dashboard/myHostings";
+            }
+            else if(localStorage.getItem('showprofile') === 'login'){
+                this.openLogin = true
+                this.firstLogin = true
+                this.openMenu = false
+            }
+          },
+
+          firstLoginToLogin(){
+            this.firstLogin = false
+            this.loginTab = true
+          },
+
+          firstLoginToSignup(){
+            this.firstLogin = false
+            this.signupTab = true
+          },
+          closeAfter(){
+            this.loginTab = false
+            this.codeSignupTab = false
+            this.codeForgotTab = false
+              //this.welcomeTab = true
+                  this.openLogin = false
+                  this.welcomeTab = false
+                  document.querySelector('.handle_profile').classList.add('showprofile')
+                  document.querySelector('.handle_profile1').classList.add('showprofile')
+                  document.querySelector('.handle_profile2').classList.add('showprofile')
+                  localStorage.setItem('showprofile', 'profile')
+          },
+
+          closeLogin(){
+            this.openLogin = false
+            this.loginTab = false
+            this.forgotLoginTab = false
+            this.codeForgotTab = false
+            this.signupTab = false
+            this.codeSignupTab = false
+            this.welcomeTab = false
+            this.firstLogin = false
+          },
+
+          logOut(){
+              this.MobileProfileTab = false
+              this.NavProfileTab = false
+              document.querySelector('.handle_profile').classList.remove('showprofile')
+              document.querySelector('.handle_profile1').classList.remove('showprofile')
+              document.querySelector('.handle_profile2').classList.remove('showprofile')
+              localStorage.setItem('showprofile', 'login')
+              window.location.href = "/users/logout";
+          }
+      }
+      }
+
+      if(localStorage.getItem('showprofile') === 'profile'){
+          document.querySelector('.handle_profile').classList.add('showprofile')
+          document.querySelector('.handle_profile1').classList.add('showprofile')
+          document.querySelector('.handle_profile2').classList.add('showprofile')
+          localStorage.setItem('showprofile', 'profile')
+      }
+
+      function handletooltip1() {
+      return {
+          tooltip1: false,
+          codeSignupTab: false,
+          step: 100,
+          handleSignUpNext(){
+              this.tooltip1 = true
+              document.querySelector('.progressbar').style.width = `${this.step}%`
+              let progress = setInterval(() => {
+                  this.step -=1
+                  document.querySelector('.progressbar').style.width = `${this.step}%`
+                  if(this.step == 0){
+                      this.tooltip1 = false
+                      this.signupTab = false
+                      this.codeSignupTab = true
+                      clearInterval(progress)
+                  }
+              }, 20);
+          }
+      }
+      }
+    </script>

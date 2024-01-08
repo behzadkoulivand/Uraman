@@ -1,0 +1,96 @@
+<h3 class="mt-2 text-center">ساخت اقامت جدید</h3>
+<div class="w-50 mx-auto">
+    <%- include("../includes/validationErrors.ejs") %>
+</div>
+<div class="d-flex align-items-center justify-content-center">
+    <form
+        action="/dashboard/add-stay"
+        class="w-50"
+        method="POST"
+        enctype="multipart/form-data"
+    >
+        <div class="form-group">
+            <label for="title">عنوان</label>
+            <input
+                type="text"
+                class="form-control w-50"
+                name="title"
+                id="title"
+            />
+        </div>
+
+        <div class="form-group">
+            <label for="price">قیمت</label>
+            <input
+                type="text"
+                class="form-control w-50"
+                name="price"
+                id="price"
+            />
+        </div>
+
+        <label for="selectedThumbnail">عکس</label>
+        <div class="input-group mb-3">
+            <input
+                type="file"
+                class="custom-file-input"
+                name="thumbnail"
+                id="selectedThumbnail"
+                aria-describedby="inputGroupFileAddon03"
+            />
+            <label
+                id="thumbStatus"
+                class="custom-file-label"
+                for="inputGroupFile03"
+                >عکس مورد نظر را انتخاب کنید</label
+            >
+        </div>
+
+        <label for="selectedThumbnail2">2 عکس</label>
+        <div class="input-group mb-3">
+            <input
+                type="file"
+                class="custom-file-input"
+                name="thumbnail2"
+                id="selectedThumbnail2"
+                aria-describedby="inputGroupFileAddon03"
+            />
+            <label
+                id="thumbStatus"
+                class="custom-file-label"
+                for="inputGroupFile03"
+                >عکس مورد نظر را انتخاب کنید</label
+            >
+        </div>
+
+        <div class="form-group">
+            <h5>توضیحات درمورد اقامت</h5>
+            <textarea name="body" class="form-control" id="body"></textarea>
+        </div>
+        
+
+        <div class="form-group">
+            <label for="entryDate">تاریخ ورود</label>
+            <input
+                type="date"
+                class="form-control w-50"
+                name="entryDate"
+                id="entryDate"
+            />
+        </div>
+            
+        <div class="form-group">
+            <label for="exitDate">تاریخ خروج</label>
+            <input
+                type="date"
+                class="form-control w-50"
+                name="exitDate"
+                id="exitDate"
+            />
+        </div>
+        <div class="row">
+            <input type="submit" value="ساخت پست" class="btn btn-success m-2" />
+            <a href="/dashboard" class="btn btn-warning m-2">انصراف</a>
+        </div>
+    </form>
+</div>
